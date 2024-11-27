@@ -1,5 +1,4 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import NavBar from '../components/navBar';
 import profile_pic from "../assets/images/profile.png"
 import { motion, AnimatePresence } from 'framer-motion';
 
