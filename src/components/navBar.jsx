@@ -70,7 +70,7 @@ const NavBar = () => {
                 <img src={logo} alt="" />
             </Link>
             <AnimatePresence>
-                {pathname === "/" &&
+                {(pathname === "/" || pathname === "/graphics") &&
                 <motion.div initial={{opacity: 0, y: -100}} animate={{opacity: 1, y: 0, transition: {type: "spring", stiffness: 200}}} exit={{opacity: 0, y: -100}}>
                     <nav className="flex items-center font-medium text-sm *:duration-300">
                         <NavLink to="/" className={({ isActive }) => isActive ? "after:origin-left after:ml-auto after:left-0 after:duration-300 relative z-[1] overflow-hidden after:absolute after:bottom-0 after:top-0 after:right-0 after:bg-navactive after:z-[-1] after:w-full text-white rounded-tl-[5px] rounded-bl-[5px]" : "after:origin-left after:duration-300 relative z-[1] overflow-hidden after:absolute after:bottom-0 after:top-0 after:right-0 after:bg-transparent after:w-0 bg-nav rounded-tl-[5px] rounded-bl-[5px] transition-all"}>

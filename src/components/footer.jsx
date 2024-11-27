@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const Footer = () => {
     return (
-        <footer className="md:px-20 bg-[#0B0B0B] text-white">
+        <footer className="md:px-20 px-4 bg-[#0B0B0B] text-white">
             <div className="md:py-20 p-2">
                 <div className="flex items-end">
                     <img src={tesOne} alt="" className="w-52" />
