@@ -65,7 +65,7 @@ const NavBar = () => {
     const [isActive, setIsActive] = useState(false);
 
     return (
-        <header className="flex justify-between items-center md:p-8 p-4">
+        <header className="flex justify-between items-center md:p-8 p-4 bg-bodybg">
             <div>
                 <img src={logo} alt="" />
             </div>
@@ -80,26 +80,28 @@ const NavBar = () => {
                 </nav>
             </div>
             <div className="z-20 overflow-hidden bg-[#282828] w-20 aspect-square rounded-full grid place-content-center cursor-pointer duration-200">
-                <IoReorderTwo onClick={() => setIsActive(!isActive)} size={40} color="white" className="z-30" />
+                <div className="grid place-content-center z-30 w-20 h-20" onClick={() => setIsActive(!isActive)}>
+                    <IoReorderTwo size={40} color="white" className="" />
+                </div>
                 <AnimatePresence>
                     <motion.div
                         variants={menuContainerVariant}
                         initial="initial"
                         animate={isActive ? "animate" : "exit"}
                         exit="exit"
-                        className="p-20 absolute top-0 bottom-0 right-0 w-1/2  bg-[#282828] text-white">
+                        className="p-20 fixed top-0 bottom-0 right-0 w-1/2  bg-[#282828] text-white">
                         <ul className="leading-[100px] text-6xl">
-                            <motion.li to="/" custom={1} variants={liVariants}>
-                                <NavLink>Home</NavLink>
+                            <motion.li onClick={()=> setIsActive(false)} to="/" custom={1} variants={liVariants}>
+                                <NavLink to="/">Home</NavLink>
                             </motion.li>
-                            <motion.li custom={2} variants={liVariants}>
+                            <motion.li onClick={()=> setIsActive(false)} custom={2} variants={liVariants}>
                                 <NavLink to="/about">About</NavLink>
                             </motion.li>
-                            <motion.li custom={3} variants={liVariants}>
-                                <NavLink>Works</NavLink>
+                            <motion.li onClick={()=> setIsActive(false)} custom={3} variants={liVariants}>
+                                <NavLink to="/experience">Experience</NavLink>
                             </motion.li>
-                            <motion.li custom={4} variants={liVariants}>
-                                <NavLink>Contact</NavLink>
+                            <motion.li onClick={()=> setIsActive(false)} custom={4} variants={liVariants}>
+                                <NavLink to="/">Contact</NavLink>
                             </motion.li>
                         </ul>
                         <svg className="absolute top-0 -left-24 w-[100px] h-full stroke-none fill-[#282828]" >

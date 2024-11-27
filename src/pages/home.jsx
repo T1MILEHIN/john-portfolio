@@ -7,7 +7,6 @@ const Home = () => {
     const { pathname } = useLocation()
     return (
         <div className='bg-bodybg'>
-            <NavBar />
             <div className="px-2 md:px-20 relative">
                 <img className="w-full md:w-[600px] mx-auto" src={profile_pic} alt="" />
                 <div className="font-light absolute top-1/2 -translate-y-1/2 md:right-44 text-center flex flex-col gap-3">
