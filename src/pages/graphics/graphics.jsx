@@ -183,7 +183,7 @@ const Graphics = () => {
             <p className="text-sm">Co-design of Clearwage’s Web-application, Clearwage Empowers Businesses With The Modern </p>
           </div>
         </div>
-        <div className="ml-auto p-10 rounded-[40px] bg-black text-white w-fit">More Works</div>
+        <div className="ml-auto button rounded-[40px] bg-black text-white w-fit">More Works</div>
       </div>
       <Footer />
     </>

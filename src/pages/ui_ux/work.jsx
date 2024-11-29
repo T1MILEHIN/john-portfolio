@@ -1,76 +1,109 @@
-import { useState, useEffect } from "react";
-import {
-    TableBody,
-    TableCell,
-    TableRow,
-} from "@/components/ui/table";
-import { motion, AnimatePresence } from "framer-motion";
+import { TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 import PropTypes from 'prop-types';
-import Products from "./components/pages";
+
+import img1 from "../../assets/images/works-images/Freebies.jpg"
+import img2 from "../../assets/images/works-images/hga.jpg"
 
 const works = [
     {
         client: "Clearwage",
         location: "United Kingdom",
         services: "Website and app design",
-        Component: Products
+        component: img1
     },
     {
         client: "HGA",
         location: "United States",
         services: "Website Design",
-        Component: Products
+        component: img2,
     },
     {
         client: "Cocacola",
         location: "Practice",
         services: "Web re-design",
-        Component: Products
+        component: img1
     },
     {
         client: "Coursemigo",
         location: "Nigeria",
         services: "App design",
-        Component: Products
+        component: img2
     },
     {
         client: "Abbi's Place",
         location: "Nigeria",
         services: "Website re-design",
-        Component: Products
+        component: img1
     },
     {
         client: "MYABFLEX",
         location: "Nigeria",
         services: "App Design",
-        Component: Products
-    },
+        component: img1
+    }
 ].map((n, idx) => ({ ...n, id: idx + 1 }));
 
 
-const Work = ({ dir, selected, handleSetSelected }) => {
-  return (
-    <TableBody onMouseLeave={() => handleSetSelected(null)} className="relative">
-        {works.map((work) => (
-            <TableRow key={work.id} id={`shift-tab-${work.id}`} onMouseEnter={() => handleSetSelected(work.id)} onClick={() => handleSetSelected(work.id)} selected={selected} className="w-full relative border-b border-[#636363] cursor-pointer" >
-                <TableCell className="py-10 md:py-16 md:text-5xl font-medium">{work.client}</TableCell>
-                <TableCell className="py-10 px-5">{work.location}</TableCell>
-                <TableCell className="py-10 px-5">{work.services}</TableCell>
-
-                <AnimatePresence>
-                    {selected === work.id && <Content dir={dir} selected={selected} />}
-                </AnimatePresence>
-            </TableRow>
-        ))}
-       
-    </TableBody>
-  )
+const Work = ({ dir, selected, setSelected, handleSetSelected }) => {
+    return (
+        <TableBody onMouseLeave={() => handleSetSelected(null)} className="relative">
+            {works.map((work) => (
+                <Table_Row key={work.client} dir={dir} row={work.id} selected={selected} setSelected={setSelected} handleSetSelected={handleSetSelected}>{work}</Table_Row>
+            ))}
+        </TableBody>
+    )
 }
 
-const Content = ({ selected, dir }) => {
+const Table_Row = ({ children, dir, handleSetSelected, selected, setSelected }) => {
+    const mousePosition = {
+        x: useMotionValue(0),
+        y: useMotionValue(0),
+    };
+
+    const handleMouseMove = (e, id) => {
+        console.log(id)
+        setSelected(id)
+        const rect = e.currentTarget.getBoundingClientRect();
+        mousePosition.x.set(e.clientX - rect.left - 100);
+        mousePosition.y.set(e.clientY - rect.top - 60);
+    };
+
+    return (
+        <>
+            <TableRow
+                id={`overflow-hidden relative shift-tab-${children.id}`}
+                onMouseMove={
+                    (e) => {
+                        handleMouseMove(e, children.id);
+                    }
+                }
+                onMouseEnter={() => handleSetSelected(children.id)}
+                onClick={() => handleSetSelected(children.id)}
+                className="w-full relative border-b border-[#636363]" >
+                <TableCell className="py-10 md:py-16 md:text-5xl font-medium">{children.client}</TableCell>
+                <TableCell className="py-10 px-5">{children.location}</TableCell>
+                <TableCell className="py-10 px-5">{children.services}</TableCell>
+                
+                <AnimatePresence>
+                    {selected === children.id && <Content dir={dir} selected={children.id} mousePosition={mousePosition} />}
+                </AnimatePresence>
+            </TableRow>
+        </>
+    )
+}
+
+const Content = ({ selected, dir, mousePosition }) => {
+    console.log('selected', selected)
     return (
         <motion.div
             id="overlay-content"
+            style={{
+                top: mousePosition.y,
+                left: mousePosition.x,
+                pointerEvents: "none",
+                zIndex: 1000,
+            }}
             initial={{
                 opacity: 0,
                 y: 8,
@@ -83,78 +116,56 @@ const Content = ({ selected, dir }) => {
                 opacity: 0,
                 y: 8,
             }}
-            className="absolute top-0 bottom-0 md:left-[400px]  w-96 rounded-lg border border-neutral-600 p-4"
+            className="absolute w-56 rounded-2xl overflow-hidden"
         >
-            {works.map((t) => {
+            {works.map((t, index) => {
                 return (
-                    <div className="overflow-hidden" key={t.id}>
-                        {selected === t.id && (
-                            <motion.div
-                                initial={{
-                                    opacity: 0,
-                                    y: dir === "d" ? 100 : dir === "u" ? -100 : 0,
-                                }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.25, ease: "easeInOut" }}
-                            >
-                                <t.Component />
-                            </motion.div>
-                        )}
-                    </div>
+                    <motion.div className="overflow-hidden" key={index}>
+                        <AnimatePresence>
+                            {(selected === t.id) && (
+                                <div className="relative">
+                                    <motion.img
+                                        key={index}
+                                        src={t.component}
+                                        alt={t.client}
+                                        initial={{
+                                            opacity: 0,
+                                            y: dir === "d" ? 100 : dir === "u" ? -100 : 0,
+                                        }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{opacity: 0}}
+                                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                                    />
+                                    <button className="p-5 rounded-3xl bg-darkbg text-white font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">View</button>
+                                </div>
+                            )}
+                        </AnimatePresence>
+                    </motion.div>
                 );
             })}
         </motion.div>
     );
-};
+}
 
-const Nub = ({ selected }) => {
-    const [left, setLeft] = useState(0);
-
-    useEffect(() => {
-        moveNub();
-    }, [selected]);
-
-    const moveNub = () => {
-        if (selected) {
-            const hoveredTab = document.getElementById(`shift-tab-${selected}`);
-            const overlayContent = document.getElementById("overlay-content");
-
-            if (!hoveredTab || !overlayContent) return;
-
-            const tabRect = hoveredTab.getBoundingClientRect();
-            const { left: contentLeft } = overlayContent.getBoundingClientRect();
-
-            const tabCenter = tabRect.left + tabRect.width / 2 - contentLeft;
-
-            setLeft(tabCenter);
-        }
-    };
-
-    return (
-        <motion.span
-            style={{
-                clipPath: "polygon(0 0, 100% 0, 50% 50%, 0% 100%)",
-            }}
-            animate={{ left }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-tl border border-neutral-600 bg-neutral-900"
-        />
-    );
-};
-
+Table_Row.propTypes = {
+    children: PropTypes.any,
+    dir: PropTypes.any,
+    selected: PropTypes.any,
+    setSelected: PropTypes.any,
+    handleSetSelected: PropTypes.func,
+}
 Work.propTypes = {
     dir: PropTypes.any,
-    selected: PropTypes.number,
+    selected: PropTypes.any,
+    setSelected: PropTypes.any,
     handleSetSelected: PropTypes.func,
 }
 
 Content.propTypes = {
     dir: PropTypes.any,
-    selected: PropTypes.number,
+    selected: PropTypes.any,
+    setSelected: PropTypes.any,
+    mousePosition: PropTypes.any,
 }
 
-Nub.propTypes = {
-    selected: PropTypes.number,
-}
-
-export default Work
+export default Work;

@@ -6,16 +6,16 @@ const About = () => {
     <div>
       <div className="md:px-20">
         <div className="md:py-20 md:p-0 p-10">
-          <h1 className="lg:w-[842px] w-full text-5xl leading-[80px]">Helping Brands Stand Out with Unique Design</h1>
+          <h1 className="lg:w-[842px] w-full text-5xl leading-[80px] specify-light">Helping Brands Stand Out with Unique Design</h1>
         </div>
         <hr className="border-[#636363]" />
       </div>
       <div className="flex flex-wrap md:flex-nowrap gap-10 md:p-20 p-10">
         <div className="flex flex-col gap-10 text-[#2E2A2A]">
-          <p>As a passionate designer, I believe that effective design has the power to transform brands and businesses. My goal is to help you stand out in a crowded market with unique, tailored designs that capture your brand&apos;s essence and values.</p>
-          <p>With expertise in graphics and product design, I&apos;ll work closely with you to create stunning visuals and innovative solutions that drive results. From logos to branding, print to digital, I&apos;ll help you make a lasting impression on your audience.</p>
+          <p className="leading-8">As a passionate designer, I believe that effective design has the power to transform brands and businesses. My goal is to help you stand out in a crowded market with unique, tailored designs that capture your brand&apos;s essence and values.</p>
+          <p  className="leading-8">With expertise in graphics and product design, I&apos;ll work closely with you to create stunning visuals and innovative solutions that drive results. From logos to branding, print to digital, I&apos;ll help you make a lasting impression on your audience.</p>
           <p className="font-bold">Let&apos;s collaborate to bring your brand to life and make it shine</p>
-          <button className="ml-auto md:mx-auto z-10 py-12 px-5 rounded-[40px] bg-[#407BFF] text-white w-fit">Get In Touch</button>
+          <button className="ml-auto md:mx-auto z-10 button rounded-[40px] bg-blue text-white">Get In Touch</button>
         </div>
         <img src={img} alt="" />
       </div>

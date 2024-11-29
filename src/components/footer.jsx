@@ -1,25 +1,25 @@
-import tesOne from "../assets/images/profile.png";
+import tesOne from "../assets/images/footer-img2.svg";
 // import footerImg from "../assets/images/footer-img.jpg";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
     return (
-        <footer className="md:px-20 px-4 bg-[#0B0B0B] text-white">
+        <footer className="md:px-20 px-4 bg-darkbg text-white">
             <div className="md:py-20 p-2">
-                <div className="flex items-end">
+                <div className="flex md:flex-nowrap flex-wrap">
                     <img src={tesOne} alt="" className="w-52" />
-                    <h1 className="md:w-[476px] font-medium text-5xl md:text-6xl text-[#D9D9D9]">Let&apos;s Work Together</h1>
+                    <h1 className="md:w-[476px] w-full font-medium text-5xl md:text-6xl text-text_gray">Let&apos;s Work Together</h1>
                 </div>
             </div>
 
-            <div className="relative text-right mx-auto my-20 md:my-0">
-                <button className="absolute md:right-20 right-10 top-1/2 -translate-y-1/2 z-10 py-6 md:py-12 px-5 md:px-5 rounded-[40px] bg-[#407BFF] text-white w-fit">Get In Touch</button>
+            <div className="relative text-right my-20 md:my-0">
+                <button className="absolute md:right-20 right-10 top-1/2 -translate-y-1/2 z-10 button rounded-[40px] bg-blue text-white">Get In Touch</button>
                 <hr className="z-[2] w-full"></hr>
             </div>
 
             <div className="flex gap-4 mt-20 px-2 md:px-0">
-                <Button className="border border-[#D9D9D9] text-[#D9D9D9] text-[10px] bg-transparent rounded-[35px] md:py-7 px-6">oluwawolejohnbelovedayomide2@gmail.com</Button>
-                <Button className="border border-[#D9D9D9] text-[#D9D9D9] text-[10px] bg-transparent rounded-[35px] md:py-7 px-6">+234 9063 606 002</Button>
+                <Button className="border border-text_gray text-text_gray text-[10px] bg-transparent rounded-[35px] md:py-7 px-6">oluwawolejohnbelovedayomide2@gmail.com</Button>
+                <Button className="border border-text_gray text-text_gray text-[10px] bg-transparent rounded-[35px] md:py-7 px-6">+234 9063 606 002</Button>
             </div>
 
             <div>

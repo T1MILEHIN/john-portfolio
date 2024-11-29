@@ -8,13 +8,12 @@ const Experience = () => {
         </div>
 
         <div className="relative text-right mx-auto py-20 md:py-0">
-            <button className="absolute right-20 top-1/2 -translate-y-1/2 z-10 py-12 px-5 rounded-[40px] bg-[#407BFF] text-white w-fit">Get In Touch</button>
+            <button className="absolute right-20 top-1/2 -translate-y-1/2 z-10 button rounded-[40px] bg-blue text-white w-fit">Get In Touch</button>
             <hr className="z-[2] w-full border-[#636363]"></hr>
         </div>
 
         <div className="py-48">
             <h1 className="text-[40px] font-medium"></h1>
-
             <div className="flex md:flex-row flex-col md:items-center gap-10 border border-b-[#636363]">
                 <div className="flex-1 flex flex-col gap-4">
                     <div className="font-bold text-[15px] flex flex-col md:gap-2 gap-4">
