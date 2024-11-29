@@ -66,7 +66,7 @@ const NavBar = () => {
     const { pathname } = useLocation()
     const [isActive, setIsActive] = useState(false);
     return (
-        <header className={`fixed w-full top-0 right-0 flex justify-between items-center md:p-8 p-4 ${pathname === "/contact" ? "bg-darkbg" : "bg-bodybg"}`}>
+        <header className={`z-[9999999999999] fixed w-full top-0 right-0 flex justify-between items-center md:p-8 p-4 ${pathname === "/contact" ? "bg-darkbg" : "bg-transparent"}`}>
             <Link to="/">
                 <img src={logo} alt="" />
             </Link>
@@ -115,7 +115,6 @@ const NavBar = () => {
                                 <motion.li className="hover:text-blue duration-300 w-fit"  onClick={()=> setIsActive(false)} custom={5} variants={liVariants}>
                                     <NavLink className={({isActive})=> isActive && "text-blue"} to="/experience">Experience</NavLink>
                                 </motion.li>
-                            
                             </ul>
                         </div>
                         <svg className="absolute top-0 -left-24 w-[100px] h-full stroke-none fill-[#282828]" >
