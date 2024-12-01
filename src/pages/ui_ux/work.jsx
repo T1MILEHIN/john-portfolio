@@ -125,9 +125,9 @@ const Content = ({ selected, dir, mousePosition }) => {
             {works.map((t, index) => {
                 return (
                     <motion.div className="overflow-hidden" key={index}>
-                        <AnimatePresence>
+                        <AnimatePresence mode="sync">
                             {(selected === t.id) && (
-                                <div className="relative">
+                                <motion.div className="relative">
                                     <motion.img
                                         key={index}
                                         src={t.component}
@@ -137,11 +137,11 @@ const Content = ({ selected, dir, mousePosition }) => {
                                             y: dir === "d" ? 100 : dir === "u" ? -100 : 0,
                                         }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        exit={{opacity: 0}}
-                                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                                        exit={{opacity: 0,  y: dir === "d" ? -100 : dir === "u" ? 100 : 0}}
+                                        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
                                     />
                                     <button className="p-5 rounded-xl bg-darkbg text-white font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">View</button>
-                                </div>
+                                </motion.div>
                             )}
                         </AnimatePresence>
                     </motion.div>

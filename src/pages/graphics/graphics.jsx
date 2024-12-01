@@ -2,9 +2,7 @@ import laptop from "../../assets/images/laptop.png"
 import img1 from "../../assets/images/clearwage/1.jpg"
 import img2 from "../../assets/images/clearwage/2.svg"
 import img3 from "../../assets/images/clearwage/3.png"
-
 import img4 from "../../assets/images/GadCare/1.svg"
-
 import img5 from "../../assets/images/moises/1.svg"
 import img6 from "../../assets/images/moises/2.svg"
 import img7 from "../../assets/images/moises/3.svg"
@@ -188,8 +186,8 @@ const Graphics = () => {
               <p className="text-sm">Co-design of Clearwage’s Web-application, Clearwage Empowers Businesses With The Modern </p>
             </div>
           </div>
+          <div className="ml-auto button rounded-[40px] bg-black text-white w-fit">More Works</div>
         </div>
-        <div className="ml-auto button rounded-[40px] bg-black text-white w-fit">More Works</div>
       </div>
       <Footer />
     </>

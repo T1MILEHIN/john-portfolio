@@ -83,7 +83,7 @@ body {
   display: grid;
   place-content: center;
 }
-
+/* BLUE BUTTON HOVER */
 .blue_hover {
   position: relative;
   z-index: 1;
@@ -108,13 +108,64 @@ body {
   top: 0;
   margin-bottom: auto;
 }
+/* BLACK BUTTON HOVER */
+.black_hover {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.black_hover::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  background-color: #407BFF;
+  border-radius: 0;
+  width: 0;
+  height: 100%;
+  transition: all 300ms ease-in-out;
+  z-index: -1;
+  transform-origin: left;
+  margin-right: auto;
+}
+
+.black_hover:hover::after {
+  border-radius: 40px;
+  width: 100%;
+  left: 0;
+}
+/* BLUE BUTTON HOVER */
+.blue_black_hover {
+  z-index: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.blue_black_hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #1962ff;
+  border-radius: 0;
+  width: 0;
+  height: 100%;
+  transition: all 300ms ease-in-out;
+  z-index: -1;
+  transform-origin: left;
+  margin-right: auto;
+}
+
+.blue_black_hover:hover::after {
+  border-radius: 40px;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
 
 #background-video {
   border: 2px solid red;
-  /* position: absolute;
-  width: 100%;
-  height: 100%;
-  inset: 1%; */
 }
 
 /* LOADER CSS */

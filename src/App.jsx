@@ -1,9 +1,9 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import NavBar from "./components/navBar";
 
-import Loader from "./components/loader";
+// import Loader from "./components/loader";
 
 const Home = React.lazy(() => import("./pages/home"));
 

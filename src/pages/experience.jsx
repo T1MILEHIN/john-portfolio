@@ -1,4 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 import color from "../assets/images/EXP/color.jpg"
+import transition from "../transition"
 
 const Experience = () => {
   return (
@@ -30,4 +32,4 @@ const Experience = () => {
   )
 }
 
-export default Experience
+export default transition(Experience);

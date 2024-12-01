@@ -77,10 +77,10 @@ const Landing = () => {
                             <h3 className="font-medium">Creating user-friendly experiences that spark joy</h3>
                         </div>
                     </div>
-                    <div className="mt-5 ml-auto button rounded-[40px] bg-black text-white w-fit">About Me</div>
+                    <div className="mt-5 ml-auto button black_hover rounded-[40px] bg-black text-white w-fit">About Me</div>
                 </div>
                 <hr className="border-[#636363]" />
-                <div className="sm:p-2 lg:p-20 py-10 p-2 flex flex-col gap-48 overflow-hidden">
+                <div className="sm:p-2 lg:py-20 py-10 p-2 flex flex-col gap-48 overflow-hidden">
                     <h1 className="mx-auto lg:w-[1023px] font-medium">RECENT WORKS</h1>
                     <div>
                         <Table>
@@ -96,7 +96,7 @@ const Landing = () => {
                                 <TableRow>
                                     <TableCell colSpan={2}></TableCell>
                                     <TableCell className="text-right">
-                                        <div className="ml-auto button rounded-[40px] bg-black text-white w-fit">More Works</div>
+                                        <div className="ml-auto button black_hover rounded-[40px] bg-black text-white">More Works</div>
                                     </TableCell>
                                 </TableRow>
                             </TableFooter>
@@ -106,7 +106,6 @@ const Landing = () => {
                 </div>
             </div>
             <ScrollSlide />
-
             <div>
                 <div className="text-center md:pt-10">
                     <h1 className="font-bold">SoftWares</h1>
