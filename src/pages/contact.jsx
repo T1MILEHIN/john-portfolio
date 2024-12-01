@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
     Select,
     SelectContent,
@@ -7,15 +8,15 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import img from "../assets/images/profile.png"
-
+import tesOne from "../assets/images/prof2.png";
+import transition from "../transition";
 
 const Contact = () => {
     return (
-        <div className="flex md:px-20 px-4 bg-darkbg text-white">
+        <div className="flex md:px-20 lg:pt-36  px-4 bg-darkbg text-white">
             <div className="flex-[2]">
                 <div className="">
-                    <h1 className="font-semibold text-[64px] md:w-[564px] text-text_gray">Let&apos;s Work Together</h1>
+                    <h1 className="specify-light2 font-semibold text-[64px] md:w-[564px] text-text_gray">Let&apos;s Work Together</h1>
                 </div>
                 <div>
                     <h1 className="font-bold text-base border-b border-[#1b1b1b] py-2">How can i help you? </h1>
@@ -80,8 +81,8 @@ const Contact = () => {
             </div>
 
             <div className="flex-1 flex flex-col gap-5">
-                <div>
-                    <img className="w-32" src={img} alt="" />
+                <div className="rounded-3xl overflow-hidden w-fit">
+                    <img className="w-44 bg-white" src={tesOne} alt="" />
                 </div>
                 <div className="flex flex-col gap-4">
                     <h2 className="font-bold text-[#636363] text-[12px]">Contact Address</h2>
@@ -104,4 +105,4 @@ const Contact = () => {
     )
 }
 
-export default Contact
+export default transition(Contact);

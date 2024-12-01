@@ -1,5 +1,6 @@
 import { useState } from "react";
-import logo from "../assets/images/logo2.png";
+import logo from "../assets/images/logo3-removebg.png";
+import darklogo from "../assets/images/darklogo-removebg.png";
 import { IoReorderTwo } from "react-icons/io5";
 import { FaXmark } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
@@ -68,7 +69,7 @@ const NavBar = () => {
     return (
         <header className={`z-[9999999999999] fixed w-full top-0 right-0 flex justify-between items-center md:p-8 p-4 ${pathname === "/contact" ? "bg-darkbg" : "bg-transparent"}`}>
             <Link to="/">
-                <img src={logo} alt="" />
+                <img src={pathname === "/contact" ? darklogo : logo} className="lg:w-[96px]" alt="" />
             </Link>
             <AnimatePresence>
                 {(pathname === "/" || pathname === "/graphics") &&
@@ -93,7 +94,7 @@ const NavBar = () => {
                         initial="initial"
                         animate={isActive ? "animate" : "exit"}
                         exit="exit"
-                        className="flex flex-col justify-between py-10 px-20 fixed top-0 bottom-0 right-0 md:w-1/2 w-full  bg-[#282828] text-white z-30">
+                        className="flex flex-col justify-between py-8 pr-8 pl-20 fixed top-0 bottom-0 right-0 md:w-1/2 w-full  bg-[#282828] text-white z-30">
                         <div className="ml-auto grid place-content-center w-20 h-20 rounded-full text-white bg-blue" onClick={() => setIsActive(false)}>
                             <FaXmark size={40} color="white" />
                         </div>

@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter , Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import NavBar from "./components/navBar";
 
@@ -19,21 +19,22 @@ const Contact = React.lazy(() => import("./pages/contact"));
 
 
 function App() {
+  const location = useLocation()
   return (
-    <BrowserRouter>
-        <AnimatePresence > 
-          <NavBar />
-          <Routes>
-            <Route path='/' element={<Suspense fallback={<Loader />}><Home /></Suspense>}>
-              <Route index element={<Suspense fallback={<Loader />}><Landing /></Suspense>} />
-              <Route path='/graphics' element={<Suspense fallback={<Loader />}><Graphics /></Suspense>} />
-              <Route path='/about' element={<Suspense fallback={<Loader />}><About /></Suspense>}></Route>
-            </Route>
-            <Route path='/experience' element={<Suspense fallback={<Loader />}><Experience /></Suspense>}></Route>
-            <Route path='/contact' element={<Suspense fallback={<Loader />}><Contact /></Suspense>}></Route>
-          </Routes>
-        </AnimatePresence>
-      </BrowserRouter>
+    <>
+      <NavBar />
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path='/' element={<Home />}>
+            <Route index element={<Landing />} />
+            <Route path='/graphics' element={<Graphics />} />
+          </Route>
+          <Route path='/about' element={<About />} />
+          <Route path='/experience' element={<Experience />} />
+          <Route path='/contact' element={<Contact />} />
+        </Routes>
+      </AnimatePresence >
+    </>
   )
 }
 

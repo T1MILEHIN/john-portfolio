@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import img1 from "../../assets/images/works-images/Freebies.jpg"
 import img2 from "../../assets/images/works-images/hga.jpg"
+import img3 from "../../assets/images/works-images/cocacola.jpg"
+import img4 from "../../assets/images/works-images/coursemigo.jpg"
 
 const works = [
     {
@@ -22,13 +24,13 @@ const works = [
         client: "Cocacola",
         location: "Practice",
         services: "Web re-design",
-        component: img1
+        component: img3
     },
     {
         client: "Coursemigo",
         location: "Nigeria",
         services: "App design",
-        component: img2
+        component: img4
     },
     {
         client: "Abbi's Place",
@@ -47,11 +49,13 @@ const works = [
 
 const Work = ({ dir, selected, setSelected, handleSetSelected }) => {
     return (
-        <TableBody onMouseLeave={() => handleSetSelected(null)} className="relative">
-            {works.map((work) => (
-                <Table_Row key={work.client} dir={dir} row={work.id} selected={selected} setSelected={setSelected} handleSetSelected={handleSetSelected}>{work}</Table_Row>
-            ))}
-        </TableBody>
+        <>
+            <TableBody  onMouseLeave={() => handleSetSelected(null)} className="relative">
+                {works.map((work) => (
+                    <Table_Row key={work.client} dir={dir} row={work.id} selected={selected} setSelected={setSelected} handleSetSelected={handleSetSelected}>{work}</Table_Row>
+                ))}
+            </TableBody>
+        </>
     )
 }
 
@@ -116,7 +120,7 @@ const Content = ({ selected, dir, mousePosition }) => {
                 opacity: 0,
                 y: 8,
             }}
-            className="absolute w-56 rounded-2xl overflow-hidden"
+            className="absolute w-56 rounded-[5px] overflow-hidden"
         >
             {works.map((t, index) => {
                 return (
@@ -136,7 +140,7 @@ const Content = ({ selected, dir, mousePosition }) => {
                                         exit={{opacity: 0}}
                                         transition={{ duration: 0.25, ease: "easeInOut" }}
                                     />
-                                    <button className="p-5 rounded-3xl bg-darkbg text-white font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">View</button>
+                                    <button className="p-5 rounded-xl bg-darkbg text-white font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">View</button>
                                 </div>
                             )}
                         </AnimatePresence>

@@ -2,12 +2,12 @@ import color from "../assets/images/EXP/color.jpg"
 
 const Experience = () => {
   return (
-    <div className="md:p-20 p-4 bg-bodybg">
+    <div className="md:px-20 md:pb-40 lg:pt-32 p-4 bg-bodybg">
         <div className="">
-            <h1 className="text-[70px] w-full lg:w-[819px]"><b>5</b> Years Background Experience in Designing</h1>
+            <h1 className="specify-conlight text-[70px] w-full lg:w-[819px]"><b>5</b> Years Background Experience in Designing</h1>
         </div>
 
-        <div className="relative text-right mx-auto py-20 md:py-0">
+        <div className="relative text-right mx-auto mt-20 md:py-0">
             <button className="absolute right-20 top-1/2 -translate-y-1/2 z-10 button rounded-[40px] bg-blue text-white w-fit">Get In Touch</button>
             <hr className="z-[2] w-full border-[#636363]"></hr>
         </div>
@@ -23,7 +23,7 @@ const Experience = () => {
                     </div>
                     <p className="text-[15px] md:w-[464px] md:leading-10 leading-[40px]">As a UI/UX intern in Colorfi, i assists in user interface and experience design, contributing to projects, learning design principles, and gaining practical experience.</p>
                 </div>
-                <img src={color} alt="" />
+                <img src={color} className="lg:w-[385px] object-cover " alt="" />
             </div>
         </div>
     </div>

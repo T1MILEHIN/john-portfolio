@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button";
 const Footer = () => {
     return (
         <footer className="md:px-20 px-4 bg-darkbg text-white">
-            <div className="md:py-20 p-2">
+            <div className="md:pt-20 p-2">
                 <div className="flex md:flex-nowrap flex-wrap">
                     <img src={tesOne} alt="" className="w-52" />
-                    <h1 className="md:w-[476px] w-full font-medium text-5xl md:text-6xl text-text_gray">Let&apos;s Work Together</h1>
+                    <h1 className="specify-light2 tracking-wide md:w-[476px] w-full font-medium text-5xl md:text-6xl text-text_gray">Let&apos;s Work Together</h1>
                 </div>
             </div>
 
-            <div className="relative text-right my-20 md:my-0">
+            <div className="relative text-right mb-20 md:my-0">
                 <button className="absolute md:right-20 right-10 top-1/2 -translate-y-1/2 z-10 button rounded-[40px] bg-blue text-white">Get In Touch</button>
                 <hr className="z-[2] w-full"></hr>
             </div>
