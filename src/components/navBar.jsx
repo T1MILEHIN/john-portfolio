@@ -69,7 +69,7 @@ const NavBar = () => {
     return (
         <header className={`z-[9999999999999] fixed w-full top-0 right-0 flex justify-between items-center md:p-8 p-4 ${pathname === "/contact" ? "bg-darkbg" : "bg-transparent"}`}>
             <Link to="/">
-                <img src={pathname === "/contact" ? darklogo : logo} className="lg:w-[96px]" alt="" />
+                <img src={pathname === "/contact" ? darklogo : logo} className="lg:w-[96px] w-[150px]" alt="" />
             </Link>
             <AnimatePresence>
                 {(pathname === "/" || pathname === "/graphics") &&
@@ -84,8 +84,8 @@ const NavBar = () => {
                     </nav>
                 </motion.div>}
             </AnimatePresence>
-            <div className="z-20 overflow-hidden bg-[#282828] w-20 aspect-square rounded-full grid place-content-center cursor-pointer duration-200">
-                <div className={`blue_hover grid place-content-center w-20 h-20 rounded-full`} onClick={() => setIsActive(true)}>
+            <div className="z-20 overflow-hidden bg-[#282828] lg:w-20 w-14 aspect-square rounded-full grid place-content-center cursor-pointer duration-200">
+                <div className={`blue_hover grid place-content-center lg:w-20 lg:h-20 w-14 h-14 rounded-full`} onClick={() => setIsActive(true)}>
                     <IoReorderTwo size={40} color="white" className="" />
                 </div>
                 <AnimatePresence>
@@ -94,8 +94,8 @@ const NavBar = () => {
                         initial="initial"
                         animate={isActive ? "animate" : "exit"}
                         exit="exit"
-                        className="flex flex-col justify-between py-8 pr-8 pl-20 fixed top-0 bottom-0 right-0 md:w-1/2 w-full  bg-[#282828] text-white z-30">
-                        <div className="ml-auto grid place-content-center w-20 h-20 rounded-full text-white bg-blue" onClick={() => setIsActive(false)}>
+                        className="flex flex-col justify-between py-8 pr-8 lg:pl-20 pl-10 fixed top-0 bottom-0 right-0 md:w-1/2 w-full  bg-[#282828] text-white z-30">
+                        <div className="ml-auto grid place-content-center lg:w-20 lg:h-20 w-14 h-14 rounded-full text-white bg-blue" onClick={() => setIsActive(false)}>
                             <FaXmark size={40} color="white" />
                         </div>
                         <div>

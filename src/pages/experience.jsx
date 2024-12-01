@@ -2,9 +2,9 @@ import color from "../assets/images/EXP/color.jpg"
 
 const Experience = () => {
   return (
-    <div className="md:px-20 md:pb-40 lg:pt-32 p-4 bg-bodybg">
+    <div className="md:px-20 md:pb-40 pt-32 p-4 bg-bodybg">
         <div className="">
-            <h1 className="specify-conlight text-[70px] w-full lg:w-[819px]"><b>5</b> Years Background Experience in Designing</h1>
+            <h1 className="specify-conlight leading-[60px] lg:leading-[100px] text-4xl lg:text-[70px] w-full lg:w-[819px]"><b>5</b> Years Background Experience in Designing</h1>
         </div>
 
         <div className="relative text-right mx-auto mt-20 md:py-0">

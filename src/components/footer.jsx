@@ -1,4 +1,4 @@
-import tesOne from "../assets/images/footer-img2.svg";
+import tesOne from "../assets/images/prof2.png";
 // import footerImg from "../assets/images/footer-img.jpg";
 import { Button } from "@/components/ui/button";
 
@@ -6,13 +6,15 @@ const Footer = () => {
     return (
         <footer className="md:px-20 px-4 bg-darkbg text-white">
             <div className="md:pt-20 p-2">
-                <div className="flex md:flex-nowrap flex-wrap">
-                    <img src={tesOne} alt="" className="w-52" />
+                <div className="flex md:flex-nowrap flex-wrap items-end lg:gap-20">
+                    <div className="w-fit rounded-3xl overflow-hidden">
+                        <img src={tesOne} alt="" className="w-52" />
+                    </div>
                     <h1 className="specify-light2 tracking-wide md:w-[476px] w-full font-medium text-5xl md:text-6xl text-text_gray">Let&apos;s Work Together</h1>
                 </div>
             </div>
 
-            <div className="relative text-right mb-20 md:my-0">
+            <div className="relative text-right mt-10 mb-20">
                 <button className="absolute md:right-20 right-10 top-1/2 -translate-y-1/2 z-10 button rounded-[40px] bg-blue text-white">Get In Touch</button>
                 <hr className="z-[2] w-full"></hr>
             </div>
@@ -32,7 +34,7 @@ const Footer = () => {
                             <li>Behance</li>
                         </ul>
                         <ul>
-                            <li>DESIGNED BY JOHNBELOVED</li>
+                            <li className="font-medium text-[#636363]">2024 Jayzleux. All rights reserved.</li>
                         </ul>
                     </div>
                 </div>
