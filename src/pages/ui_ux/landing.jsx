@@ -1,6 +1,4 @@
-import { useState, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useLocation } from 'react-router-dom';
+import { useState } from "react";
 import {
     Table,
     TableCell,
@@ -13,7 +11,9 @@ import IconCloud from "@/components/ui/icon-cloud";
 import Work from "./work";
 import tesOne from "../../assets/images/profile.png"
 import Footer from "../../components/footer";
-import profile_pic from "../../assets/images/profile.png"
+import LandingProfile from "../../components/landingProfile";
+
+import ScrollSlide from "./components/scrollSlide";
 
 const slugs = [
     "typescript",
@@ -52,8 +52,6 @@ const slugs = [
 const Landing = () => {
     const [selected, setSelected] = useState(null);
     const [dir, setDir] = useState(null);
-    const targetRef = useRef(null);
-    const { pathname } = useLocation()
     const handleSetSelected = (val) => {
         if (typeof val === "number" && typeof selected === "number") {
             setDir(selected > val ? "d" : "u");
@@ -64,45 +62,10 @@ const Landing = () => {
         console.log("Direction:", dir, "Updated selected:", val);
     };
 
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-    });
-
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
-
-    const xReverse = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"]);
-
     return (
         <div>
-            <div className="px-2 md:px-20 md:pt-24 relative">
-                <img className="w-full md:w-[700] lg:w-[800px] mx-auto" src={profile_pic} alt="" />
-                <div className="font-light absolute top-1/2 -translate-y-1/2 md:right-44 text-center flex flex-col gap-3">
-                    <p className="relative after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-3 after:h-1 after:rounded-[10px] after:bg-[#263238]">Oluwawole Johnbeloved Ayomide</p>
-                    <AnimatePresence mode="wait">
-                        {pathname === "/" ? (
-                            <motion.p
-                                key="product-designer" // unique key for tracking this element
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -10 }}
-                                className="font-medium text-sm"
-                            >
-                                Product Designer
-                            </motion.p>
-                        ) : (
-                            <motion.p
-                                key="graphics-designer" // unique key for tracking this element
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -10 }}
-                                className="font-medium text-sm"
-                            >
-                                Graphics Designer
-                            </motion.p>
-                        )}
-                    </AnimatePresence>
-                </div>
-                <hr className="border-[#636363]" />
+            <div className="px-2 md:px-20 md:pt-36 relative">
+                <LandingProfile />
             </div>
             <div className="lg:px-20 px-2">
                 <div className="lg::p-20 px-2 py-10">
@@ -142,32 +105,7 @@ const Landing = () => {
 
                 </div>
             </div>
-
-
-            <div ref={targetRef} className="relative h-[400vh] py-[30vh]">
-                <div className="sticky top-0 right-0 left-0 overflow-hidden flex items-center h-screen">
-                    <div className="flex flex-col gap-5">
-                        <motion.div style={{ x }} className="flex gap-5">
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                        </motion.div>
-                        <motion.div style={{ x: xReverse }} className="flex gap-5">
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                            <div className="w-[420px] h-[237px] aspect-square bg-black"></div>
-                        </motion.div>
-                    </div>
-                </div>
-            </div>
+            <ScrollSlide />
 
             <div>
                 <div className="text-center md:pt-10">

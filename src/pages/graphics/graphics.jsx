@@ -13,6 +13,7 @@ import Footer from "../../components/footer"
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import LandingProfile from "../../components/landingProfile"
 
 const Graphics = () => {
   const ref1 = useRef(null)
@@ -23,164 +24,169 @@ const Graphics = () => {
   const isInView3 = useInView(ref3, { once: true })
   return (
     <>
-      <div className="p-10">
-        <h1>RECENT WORKS</h1>
-        <div ref={ref1} className="py-20 flex flex-col gap-8">
-          <motion.div className="mx-auto w-fit relative">
-            <img src={laptop} alt="" className="md:w-[677px] mx-auto" />
-            <div className="bg-bodybg overflow-hidden grid place-content-center absolute top-5 right-20 bottom-14 left-20">
-              <div className="flex gap-5">
-                <motion.img
-                  animate={
-                    isInView1
-                      ? { translateX: [0, -500, 0] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  src={img1} alt="" />
-                <motion.img
-                  initial={{ translateY: 80 }}
-                  animate={
-                    isInView1
-                      ? { scale: [1, 8, 1] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  className="z-10" src={img2} alt="" />
-                <motion.img
-                  animate={
-                    isInView1
-                      ? { translateX: [0, 500, 0] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  src={img3} alt="" />
-              </div>
-            </div>
-          </motion.div>
-          <div className="sm:w-[450px] mx-auto text-center flex flex-col gap-4">
-            <h2 className="font-medium uppercase">clearwage Website Design</h2>
-            <p className="text-sm">End to end Web application for Gadcare. GadCare provides product care solutions for your digital products and appliances.</p>
-          </div>
+      <div className="">
+        <div className="px-2 md:px-20 md:pt-36 relative">
+          <LandingProfile />
         </div>
-        <div ref={ref2} className="py-20 flex flex-col gap-8">
-          <motion.div className="mx-auto w-fit relative">
-            <img src={laptop} alt="" className="md:w-[677px] mx-auto" />
-            <div className="bg-bodybg overflow-hidden grid place-content-center absolute top-5 right-20 bottom-14 left-20">
-              <div className="flex items-center gap-5">
-                <motion.div
-                  animate={
-                    isInView2
-                      ? { translateY: [0, -500, 0] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  className="flex flex-col gap-4">
-                  <img src={img4} alt="" />
-                  <img src={img4} alt="" />
-                  <img src={img4} alt="" />
-                </motion.div>
-                <motion.div
-                  animate={
-                    isInView2
-                      ? { scale: [1, 3.5, 1] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  className="z-10">
-                  <img src={img4} alt="" />
-                </motion.div>
-                <motion.div
-                  animate={
-                    isInView2
-                      ? { translateY: [0, 500, 0] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  className="flex flex-col gap-4">
-                  <img src={img4} alt="" />
-                  <img src={img4} alt="" />
-                  <img src={img4} alt="" />
-                </motion.div>
+        <div className="p-10 flex flex-col gap-20">
+          <h1 className="mx-auto lg:w-[1023px] font-medium">RECENT WORKS</h1>
+          <div ref={ref1} className="py-20 flex flex-col gap-8">
+            <motion.div className="mx-auto w-fit relative">
+              <img src={laptop} alt="" className="md:w-[677px] mx-auto" />
+              <div className="bg-bodybg overflow-hidden grid place-content-center absolute top-5 right-20 bottom-14 left-20">
+                <div className="flex gap-5">
+                  <motion.img
+                    animate={
+                      isInView1
+                        ? { translateX: [0, -500, 0] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    src={img1} alt="" />
+                  <motion.img
+                    initial={{ translateY: 80 }}
+                    animate={
+                      isInView1
+                        ? { scale: [1, 8, 1] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    className="z-10" src={img2} alt="" />
+                  <motion.img
+                    animate={
+                      isInView1
+                        ? { translateX: [0, 500, 0] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    src={img3} alt="" />
+                </div>
               </div>
+            </motion.div>
+            <div className="sm:w-[450px] mx-auto text-center flex flex-col gap-4">
+              <h2 className="font-medium uppercase">clearwage Website Design</h2>
+              <p className="text-sm">End to end Web application for Gadcare. GadCare provides product care solutions for your digital products and appliances.</p>
             </div>
-          </motion.div>
-          <div className="sm:w-[450px] mx-auto text-center flex flex-col gap-4">
-            <h2 className="font-medium uppercase">GadCare Website-Application</h2>
-            <p className="text-sm">End to end Web application for Gadcare. GadCare provides product care solutions for your digital products and appliances.</p>
           </div>
-        </div>
-        <div ref={ref3} className="py-20 flex flex-col gap-8">
-          <motion.div className="mx-auto w-fit relative">
-            <img src={laptop} alt="" className="md:w-[677px] mx-auto" />
-            <div className="bg-bodybg overflow-hidden grid place-content-center absolute top-5 right-20 bottom-14 left-20">
-              <div className="flex gap-5">
-                <motion.img
-                  animate={
-                    isInView3
-                      ? { translateX: [0, -500, 0] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  src={img5} alt="" />
-                <motion.img
-                  animate={
-                    isInView3
-                      ? { scale: [1, 8, 1] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  className="z-10" src={img6} alt="" />
-                <motion.img
-                  animate={
-                    isInView3
-                      ? { translateX: [0, 500, 0] }
-                      : {}
-                  }
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }}
-                  src={img7} alt="" />
+          <div ref={ref2} className="py-20 flex flex-col gap-8">
+            <motion.div className="mx-auto w-fit relative">
+              <img src={laptop} alt="" className="md:w-[677px] mx-auto" />
+              <div className="bg-bodybg overflow-hidden grid place-content-center absolute top-5 right-20 bottom-14 left-20">
+                <div className="flex items-center gap-5">
+                  <motion.div
+                    animate={
+                      isInView2
+                        ? { translateY: [0, -500, 0] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    className="flex flex-col gap-4">
+                    <img src={img4} alt="" />
+                    <img src={img4} alt="" />
+                    <img src={img4} alt="" />
+                  </motion.div>
+                  <motion.div
+                    animate={
+                      isInView2
+                        ? { scale: [1, 3.5, 1] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    className="z-10">
+                    <img src={img4} alt="" />
+                  </motion.div>
+                  <motion.div
+                    animate={
+                      isInView2
+                        ? { translateY: [0, 500, 0] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    className="flex flex-col gap-4">
+                    <img src={img4} alt="" />
+                    <img src={img4} alt="" />
+                    <img src={img4} alt="" />
+                  </motion.div>
+                </div>
               </div>
+            </motion.div>
+            <div className="sm:w-[450px] mx-auto text-center flex flex-col gap-4">
+              <h2 className="font-medium uppercase">GadCare Website-Application</h2>
+              <p className="text-sm">End to end Web application for Gadcare. GadCare provides product care solutions for your digital products and appliances.</p>
             </div>
-          </motion.div>
-          <div className="sm:w-[450px] mx-auto text-center flex flex-col gap-4">
-            <h2 className="font-medium uppercase">Moises Mobile application Redesign</h2>
-            <p className="text-sm">Co-design of Clearwage’s Web-application, Clearwage Empowers Businesses With The Modern </p>
+          </div>
+          <div ref={ref3} className="py-20 flex flex-col gap-8">
+            <motion.div className="mx-auto w-fit relative">
+              <img src={laptop} alt="" className="md:w-[677px] mx-auto" />
+              <div className="bg-bodybg overflow-hidden grid place-content-center absolute top-5 right-20 bottom-14 left-20">
+                <div className="flex gap-5">
+                  <motion.img
+                    animate={
+                      isInView3
+                        ? { translateX: [0, -500, 0] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    src={img5} alt="" />
+                  <motion.img
+                    animate={
+                      isInView3
+                        ? { scale: [1, 8, 1] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    className="z-10" src={img6} alt="" />
+                  <motion.img
+                    animate={
+                      isInView3
+                        ? { translateX: [0, 500, 0] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                    src={img7} alt="" />
+                </div>
+              </div>
+            </motion.div>
+            <div className="sm:w-[450px] mx-auto text-center flex flex-col gap-4">
+              <h2 className="font-medium uppercase">Moises Mobile application Redesign</h2>
+              <p className="text-sm">Co-design of Clearwage’s Web-application, Clearwage Empowers Businesses With The Modern </p>
+            </div>
           </div>
         </div>
         <div className="ml-auto button rounded-[40px] bg-black text-white w-fit">More Works</div>
