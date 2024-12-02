@@ -12,7 +12,8 @@ import Work from "./work";
 import tesOne from "../../assets/images/profile.png"
 import Footer from "../../components/footer";
 import LandingProfile from "../../components/landingProfile";
-
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollSlide from "./components/scrollSlide";
 
 const slugs = [
@@ -61,7 +62,18 @@ const Landing = () => {
         setSelected(val);
         console.log("Direction:", dir, "Updated selected:", val);
     };
+    const testimonialRef = useRef(null)
+    const { scrollYProgress } = useScroll({
+        target: testimonialRef,
+        offset: ["start start", "center center"]
+    })
+    const scale = useTransform(scrollYProgress, [1, 0], [1, 3.5])
 
+    const x = useTransform(scrollYProgress, [0, 0.5, 1], ["-100%", "-30%", "0%"]);
+
+    const xReverse = useTransform(scrollYProgress, [0, 0.5, 1], ["100%", "30%", "0%"]);
+
+    const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [0, 0.1, 1])
     return (
         <div>
             <div className="px-2 md:px-20 md:pt-36 relative">
@@ -120,9 +132,8 @@ const Landing = () => {
                 <div className="text-center py-10">
                     <h1 className="font-bold">Testimonials</h1>
                 </div>
-
-                <div className="flex flex-wrap md:flex-nowrap gap-10 md:p-20 p-2">
-                    <div>
+                <motion.div ref={testimonialRef} className="h-[150vh] flex justify-center items-center flex-wrap md:flex-nowrap gap-10 md:p-20 p-2">
+                    <motion.div style={{ x, opacity }}>
                         <p className="text-[#C6C3C3]">01</p>
                         <div className="py-6 border-y-2 border-[#C6C3C3] flex flex-col gap-4">
                             <div className="flex items-center gap-4">
@@ -134,8 +145,8 @@ const Landing = () => {
                             </div>
                             <p className="text-darkbg leading-7 text-xs">Johnbeloved transformed our interface into a visually stunning experience. Their attention to detail and understanding of our brand made the collaboration seamless. Highly recommended!</p>
                         </div>
-                    </div>
-                    <div>
+                    </motion.div>
+                    <motion.div style={{ scale, transformOrigin: 'center' }} className="origin-center bg-bodybg">
                         <p className="text-[#C6C3C3]">02</p>
                         <div className="py-6 border-t-2 border-b border-[#C6C3C3] flex flex-col gap-4">
                             <div className="flex items-center gap-4">
@@ -147,8 +158,8 @@ const Landing = () => {
                             </div>
                             <p className="text-darkbg leading-7 text-xs">Johnbeloved transformed our interface into a visually stunning experience. Their attention to detail and understanding of our brand made the collaboration seamless. Highly recommended!</p>
                         </div>
-                    </div>
-                    <div>
+                    </motion.div>
+                    <motion.div style={{ x:xReverse, opacity }}>
                         <p className="text-[#C6C3C3]">03</p>
                         <div className="py-6 border-y-2 border-[#C6C3C3] flex flex-col gap-4">
                             <div className="flex items-center gap-4">
@@ -160,8 +171,8 @@ const Landing = () => {
                             </div>
                             <p className="text-darkbg leading-7 text-xs">Johnbeloved transformed our interface into a visually stunning experience. Their attention to detail and understanding of our brand made the collaboration seamless. Highly recommended!</p>
                         </div>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </div>
 
             <Footer />

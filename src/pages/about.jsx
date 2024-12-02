@@ -14,6 +14,8 @@ const About = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["50%", "0%"]);
 
   const xReverse = useTransform(scrollYProgress, [0, 1], ["0", "-50%"]);
+
+  
   return (
     <div className="pt-56 lg:pt-24 relative">
       <div className="lg:px-20 min-h-screen">
@@ -39,18 +41,18 @@ const About = () => {
       <div ref={serviceRef} className="md:p-20 p-4">
         <h1 className="text-[55px]">My Services</h1>
 
-        <motion.div className="relative py-16 flex flex-wrap md:flex-nowrap gap-24 md:gap-10">
-          <motion.div style={{ x }} className="absolute flex flex-col gap-5">
+        <motion.div className=" relative py-16 flex flex-wrap md:flex-nowrap gap-24 md:gap-10">
+          <motion.div className="relative flex flex-col gap-5">
             <h2 className="font-medium text-2xl">Graphic Design</h2>
             <p className="text-[#2E2A2A] text-[15px] leading-[30px]">With a strong portfolio, I possess 5 years of extensive experience in graphics design, delivering high-quality visuals with precision expertise.</p>
             <p className="font-bold absolute -bottom-40 text-[212px] text-[#63636386]">01</p>
           </motion.div>
-          <motion.div className="relative flex flex-col gap-5">
+          <motion.div className="origin-center relative flex flex-col gap-5">
             <h2 className="font-medium text-2xl">UI/UX Design</h2>
             <p className="text-[#2E2A2A] text-[15px] leading-[30px]">Utilizing 5 years of expertise, I craft intuitive UI/UX designs that elevate user experiences, drive engagement, and fuel business growth.</p>
             <p className="font-bold absolute -bottom-40 text-[212px] text-[#63636386]">02</p>
           </motion.div>
-          <motion.div style={{x: xReverse}} className="absolute flex flex-col gap-5">
+          <motion.div className="relative flex flex-col gap-5">
             <h2 className="font-medium text-2xl">Design Tutoring</h2>
             <p className="text-[#2E2A2A] text-[15px] leading-[30px]">With 2years of experience, I empower students as a design instructor, teaching UI/UX, graphics design, and product design with passion.</p>
             <p className="font-bold absolute -bottom-40 text-[212px] text-[#63636386]">03</p>

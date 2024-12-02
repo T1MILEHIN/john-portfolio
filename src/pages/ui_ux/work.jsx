@@ -98,7 +98,6 @@ const Table_Row = ({ children, dir, handleSetSelected, selected, setSelected }) 
 }
 
 const Content = ({ selected, dir, mousePosition }) => {
-    console.log('selected', selected)
     return (
         <motion.div
             id="overlay-content"
@@ -109,23 +108,19 @@ const Content = ({ selected, dir, mousePosition }) => {
                 zIndex: 1000,
             }}
             initial={{
-                opacity: 0,
-                y: 8,
+                scale: 0,
             }}
             animate={{
-                opacity: 1,
-                y: 0,
+                scale: 1,
             }}
-            exit={{
-                opacity: 0,
-                y: 8,
+            transition={{
+                duration: 0.25, type: "spring", stiffness: 200
             }}
-            className="absolute w-56 rounded-[5px] overflow-hidden"
-        >
+            className="absolute w-64 after:inset-[-30px] after:absolute after:bg-black after:bg-opacity-60">
             {works.map((t, index) => {
                 return (
                     <motion.div className="overflow-hidden" key={index}>
-                        <AnimatePresence mode="sync">
+                        <AnimatePresence>
                             {(selected === t.id) && (
                                 <motion.div className="relative">
                                     <motion.img
@@ -133,17 +128,16 @@ const Content = ({ selected, dir, mousePosition }) => {
                                         src={t.component}
                                         alt={t.client}
                                         initial={{
-                                            opacity: 0,
                                             y: dir === "d" ? 100 : dir === "u" ? -100 : 0,
                                         }}
-                                        animate={{ opacity: 1, y: 0 }}
+                                        animate={{ y: 0 }}
                                         exit={{opacity: 0,  y: dir === "d" ? -100 : dir === "u" ? 100 : 0}}
                                         transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
                                     />
-                                    <button className="p-5 rounded-xl bg-darkbg text-white font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">View</button>
                                 </motion.div>
                             )}
                         </AnimatePresence>
+                        <button className="p-5 rounded-xl bg-darkbg text-white font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">View</button>
                     </motion.div>
                 );
             })}
