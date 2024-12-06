@@ -8,13 +8,15 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import IconCloud from "@/components/ui/icon-cloud";
-import Work from "./work";
+import Work from "./components/work";
 import tesOne from "../../assets/images/profile.png"
 import Footer from "../../components/footer";
 import LandingProfile from "../../components/landingProfile";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollSlide from "./components/scrollSlide";
+import HoverEffect from "../../components/custom/hoverEffect";
+import { Parallax } from 'react-scroll-parallax';
 
 const slugs = [
     "typescript",
@@ -52,15 +54,17 @@ const slugs = [
 
 const Landing = () => {
     const [selected, setSelected] = useState(null);
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [dir, setDir] = useState(null);
     const handleSetSelected = (val) => {
         if (typeof val === "number" && typeof selected === "number") {
-            setDir(selected > val ? "d" : "u");
+            setDir(selected > val ? "u" : "d");
+            setCurrentSlide(prev => selected > val ? prev + 1 : prev - 1)
         } else if (val === null) {
             setDir(null);
+            // setCurrentSlide(0)
         }
         setSelected(val);
-        console.log("Direction:", dir, "Updated selected:", val);
     };
     const testimonialRef = useRef(null)
     const { scrollYProgress } = useScroll({
@@ -89,12 +93,21 @@ const Landing = () => {
                             <h3 className="font-medium">Creating user-friendly experiences that spark joy</h3>
                         </div>
                     </div>
-                    <div className="mt-5 ml-auto button black_hover rounded-[40px] bg-black text-white w-fit">About Me</div>
+                    <Parallax translateY={[20, -20]}>
+                        <HoverEffect Z={100} rotationRange={20} style={{ width: "fit-content", marginLeft: "auto" }}>
+                            <div
+                                className="mt-5 ml-auto button black_hover rounded-[40px] bg-black text-white w-fit">
+                                <HoverEffect Z={75} rotationRange={20} style={{ width: "fit-content" }}>
+                                    <div className="button">About Me</div>
+                                </HoverEffect>
+                            </div>
+                        </HoverEffect>
+                    </Parallax>
                 </div>
                 <hr className="border-[#636363]" />
                 <div className="sm:p-2 lg:py-20 py-10 p-2 flex flex-col gap-48 overflow-hidden">
                     <h1 className="mx-auto lg:w-[1023px] font-medium">RECENT WORKS</h1>
-                    <div>
+                    <div className="overflow-hidden">
                         <Table>
                             <TableHeader>
                                 <TableRow className="border-b border-[#636363]">
@@ -103,7 +116,14 @@ const Landing = () => {
                                     <TableHead>SERVICES</TableHead>
                                 </TableRow>
                             </TableHeader>
-                            <Work dir={dir} selected={selected} setSelected={setSelected} handleSetSelected={handleSetSelected} />
+                            <Work
+                                dir={dir}
+                                setDir={setDir}
+                                currentSlide={currentSlide}
+                                setCurrentSlide={setCurrentSlide}
+                                selected={selected}
+                                setSelected={setSelected}
+                                handleSetSelected={handleSetSelected} />
                             <TableFooter>
                                 <TableRow>
                                     <TableCell colSpan={2}></TableCell>
@@ -159,7 +179,7 @@ const Landing = () => {
                             <p className="text-darkbg leading-7 text-xs">Johnbeloved transformed our interface into a visually stunning experience. Their attention to detail and understanding of our brand made the collaboration seamless. Highly recommended!</p>
                         </div>
                     </motion.div>
-                    <motion.div style={{ x:xReverse, opacity }}>
+                    <motion.div style={{ x: xReverse, opacity }}>
                         <p className="text-[#C6C3C3]">03</p>
                         <div className="py-6 border-y-2 border-[#C6C3C3] flex flex-col gap-4">
                             <div className="flex items-center gap-4">

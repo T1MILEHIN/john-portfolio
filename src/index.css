@@ -168,6 +168,25 @@ body {
   border: 2px solid red;
 }
 
+/* SPRING ANIMATION */
+@keyframes spring {
+  0% {
+      transform: translate(0, 0);
+  }
+  20% {
+      transform: translate(-10px, -10px);
+  }
+  50% {
+      transform: translate(5px, 5px);
+  }
+  80% {
+      transform: translate(-2px, -2px);
+  }
+  100% {
+      transform: translate(0, 0);
+  }
+}
+
 /* TOGGLER CSS  */
 /* From Uiverse.io by vk-uiux */ 
 #checkbox {
