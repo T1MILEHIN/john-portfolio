@@ -12,6 +12,7 @@ export default {
   		colors: {
 			blue: "#407BFF",
 			text_gray: "#D9D9D9",
+			video_bg: "#C9C9CA",
 			bodybg: "#ebebeb",
 			darkbg: "#0B0B0B",
 			nav: "#87878733",

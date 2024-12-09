@@ -111,14 +111,14 @@ const NavBar = () => {
             <div className={`z-[40] lg:w-20 w-14 aspect-square rounded-full grid place-content-center`}>
                 <HoverEffect rotationRange={30}>
                     <motion.label drag className={`${isActive ? "bg-blue" : "bg-[#282828]"} overflow-hidden blue_hover z-40 grid place-content-center lg:w-20 lg:h-20 w-14 h-14 rounded-full cursor-pointer`} onClick={() => setIsActive(!isActive)}>
-                        <HoverEffect Z={70} rotationRange={10} style={{width: "fit-content"}}>
-                        <input onChange={handleToggle} checked={isActive} type="checkbox" id="checkbox" />
-                        <label
-                            htmlFor="checkbox" 
-                            className="toggle">
-                            <div className="bar bar--top"></div>
-                            <div className="bar bar--bottom"></div>
-                        </label>
+                        <HoverEffect Z={70} rotationRange={10} style={{ width: "fit-content" }}>
+                            <input onChange={handleToggle} checked={isActive} type="checkbox" id="checkbox" />
+                            <label
+                                htmlFor="checkbox"
+                                className="toggle">
+                                <div className="bar bar--top"></div>
+                                <div className="bar bar--bottom"></div>
+                            </label>
                         </HoverEffect>
                     </motion.label>
                 </HoverEffect>
@@ -133,10 +133,10 @@ const NavBar = () => {
                     <div>
                         <p className="p-4 text-[#4d4d4d] border-b border-[#727272]">Navigation</p>
                         <ul className="leading-[80px] text-4xl">
-                                {LINKS.map((link, index)=> (
-                                <HoverEffect key={index} rotationRange={15} style={{width: "fit-content"}}>
-                                    <motion.li  className="hover:text-blue duration-300 w-fit" onClick={() => setIsActive(false)} custom={index} variants={liVariants}>
-                                        <NavLink className={({ isActive }) => isActive && "text-blue"} to={link.url}>{link.name}</NavLink>
+                            {LINKS.map((link, index) => (
+                                <HoverEffect key={index} rotationRange={15} style={{ width: "fit-content" }}>
+                                    <motion.li className="hover:text-blue duration-300 w-fit" onClick={() => setIsActive(false)} custom={index} variants={liVariants}>
+                                        <NavLink className={({ isActive }) => isActive ? "text-blue" : "text-white"} to={link.url}>{link.name}</NavLink>
                                     </motion.li>
                                 </HoverEffect>
                             ))}

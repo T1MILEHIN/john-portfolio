@@ -1,4 +1,4 @@
-import tesOne from "../assets/images/prof2.png";
+import tesOne from "../assets/images/FOOTER.jpg";
 // import footerImg from "../assets/images/footer-img.jpg";
 import { Button } from "@/components/ui/button";
 

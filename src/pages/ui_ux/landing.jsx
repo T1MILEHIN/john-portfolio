@@ -59,7 +59,7 @@ const Landing = () => {
     const handleSetSelected = (val) => {
         if (typeof val === "number" && typeof selected === "number") {
             setDir(selected > val ? "u" : "d");
-            setCurrentSlide(prev => selected > val ? prev + 1 : prev - 1)
+            setCurrentSlide(prev => selected > val && dir === "d" ? prev + 1 : dir === "u" && prev - 1)
         } else if (val === null) {
             setDir(null);
             // setCurrentSlide(0)
@@ -71,13 +71,6 @@ const Landing = () => {
         target: testimonialRef,
         offset: ["start start", "center center"]
     })
-    const scale = useTransform(scrollYProgress, [1, 0], [1, 3.5])
-
-    const x = useTransform(scrollYProgress, [0, 0.5, 1], ["-100%", "-30%", "0%"]);
-
-    const xReverse = useTransform(scrollYProgress, [0, 0.5, 1], ["100%", "30%", "0%"]);
-
-    const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [0, 0.1, 1])
     return (
         <div>
             <div className="px-2 md:px-20 md:pt-36 relative">
@@ -97,7 +90,7 @@ const Landing = () => {
                         <HoverEffect Z={100} rotationRange={20} style={{ width: "fit-content", marginLeft: "auto" }}>
                             <div
                                 className="mt-5 ml-auto button black_hover rounded-[40px] bg-black text-white w-fit">
-                                <HoverEffect Z={75} rotationRange={20} style={{ width: "fit-content" }}>
+                                <HoverEffect Z={100} rotationRange={30} style={{ width: "fit-content" }}>
                                     <div className="button">About Me</div>
                                 </HoverEffect>
                             </div>
@@ -105,10 +98,10 @@ const Landing = () => {
                     </Parallax>
                 </div>
                 <hr className="border-[#636363]" />
-                <div className="sm:p-2 lg:py-20 py-10 p-2 flex flex-col gap-48 overflow-hidden">
+                <div className="sm:p-2 lg:py-28 py-10 p-2 flex flex-col gap-48 overflow-hidden">
                     <h1 className="mx-auto lg:w-[1023px] font-medium">RECENT WORKS</h1>
-                    <div className="overflow-hidden">
-                        <Table>
+                    <div className="">
+                        <Table className="overflow-hidden">
                             <TableHeader>
                                 <TableRow className="border-b border-[#636363]">
                                     <TableHead className="md:min-w-[400px] w-fit">CLIENT</TableHead>
@@ -127,8 +120,16 @@ const Landing = () => {
                             <TableFooter>
                                 <TableRow>
                                     <TableCell colSpan={2}></TableCell>
-                                    <TableCell className="text-right">
-                                        <div className="ml-auto button black_hover rounded-[40px] bg-black text-white">More Works</div>
+                                    <TableCell className="text-right p-10">
+                                        <Parallax translateY={[20, -20]}>
+                                            <HoverEffect Z={100} rotationRange={20} style={{ width: "fit-content", marginLeft: "auto" }}>
+                                                <div className="ml-auto button black_hover rounded-[40px] bg-black text-white">
+                                                    <HoverEffect Z={100} rotationRange={30} style={{ width: "fit-content" }}>
+                                                        <div className="button">More Works</div>
+                                                    </HoverEffect>
+                                                </div>
+                                            </HoverEffect>
+                                        </Parallax>
                                     </TableCell>
                                 </TableRow>
                             </TableFooter>
@@ -148,13 +149,13 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div>
+            <div className="relative z-[999999999] bg-bodybg">
                 <div className="text-center py-10">
                     <h1 className="font-bold">Testimonials</h1>
                 </div>
-                <motion.div ref={testimonialRef} className="h-[150vh] flex justify-center items-center flex-wrap md:flex-nowrap gap-10 md:p-20 p-2">
-                    <motion.div style={{ x, opacity }}>
-                        <p className="text-[#C6C3C3]">01</p>
+                <motion.div ref={testimonialRef} className="flex justify-center items-center flex-wrap md:flex-nowrap gap-10 md:p-20 p-2">
+                    <motion.div>
+                        <p className="text-[#C6C3C3] font-bold text-2xl">01</p>
                         <div className="py-6 border-y-2 border-[#C6C3C3] flex flex-col gap-4">
                             <div className="flex items-center gap-4">
                                 <img src={tesOne} alt="" className="w-10" />
@@ -166,8 +167,8 @@ const Landing = () => {
                             <p className="text-darkbg leading-7 text-xs">Johnbeloved transformed our interface into a visually stunning experience. Their attention to detail and understanding of our brand made the collaboration seamless. Highly recommended!</p>
                         </div>
                     </motion.div>
-                    <motion.div style={{ scale, transformOrigin: 'center' }} className="origin-center bg-bodybg">
-                        <p className="text-[#C6C3C3]">02</p>
+                    <motion.div className="origin-center bg-bodybg">
+                        <p className="text-[#C6C3C3] font-bold text-2xl">02</p>
                         <div className="py-6 border-t-2 border-b border-[#C6C3C3] flex flex-col gap-4">
                             <div className="flex items-center gap-4">
                                 <img src={tesOne} alt="" className="w-10" />
@@ -179,8 +180,8 @@ const Landing = () => {
                             <p className="text-darkbg leading-7 text-xs">Johnbeloved transformed our interface into a visually stunning experience. Their attention to detail and understanding of our brand made the collaboration seamless. Highly recommended!</p>
                         </div>
                     </motion.div>
-                    <motion.div style={{ x: xReverse, opacity }}>
-                        <p className="text-[#C6C3C3]">03</p>
+                    <motion.div>
+                        <p className="text-[#C6C3C3] font-bold text-2xl">03</p>
                         <div className="py-6 border-y-2 border-[#C6C3C3] flex flex-col gap-4">
                             <div className="flex items-center gap-4">
                                 <img src={tesOne} alt="" className="w-10" />
@@ -195,7 +196,9 @@ const Landing = () => {
                 </motion.div>
             </div>
 
-            <Footer />
+            <Parallax translateY={[-40, 42]} speed={-5} className="origin-bottom">
+                <Footer />
+            </Parallax>
         </div>
     )
 }

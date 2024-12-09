@@ -11,7 +11,9 @@ import Footer from "../../components/footer"
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import LandingProfile from "../../components/landingProfile"
+import LandingProfile from "../../components/landingProfile";
+import HoverEffect from "../../components/custom/hoverEffect";
+import { Parallax } from 'react-scroll-parallax';
 
 const Graphics = () => {
   const ref1 = useRef(null)
@@ -186,8 +188,19 @@ const Graphics = () => {
               <p className="text-sm">Co-design of Clearwage’s Web-application, Clearwage Empowers Businesses With The Modern </p>
             </div>
           </div>
-          <div className="ml-auto button rounded-[40px] bg-black text-white w-fit">More Works</div>
+          <Parallax translateY={[20, -20]}>
+            <HoverEffect Z={100} rotationRange={20} style={{ width: "fit-content", marginLeft: "auto" }}>
+              <div className="ml-auto button black_hover rounded-[40px] bg-black text-white">
+                <HoverEffect Z={50} rotationRange={30} style={{ width: "fit-content" }}>
+                  <div className="button">More Works</div>
+                </HoverEffect>
+              </div>
+            </HoverEffect>
+          </Parallax>
         </div>
+      </div>
+      <div>
+        <h1 className="text-center mx-auto lg:w-[1023px] font-medium">GRAPHICS DESIGN</h1>
       </div>
       <Footer />
     </>

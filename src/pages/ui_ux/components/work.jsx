@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback, act } from "react";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 import PropTypes from 'prop-types';
 
-import img1 from "../../../assets/images/works-images/Freebies.jpg"
+import img1 from "../../../assets/images/works-images/F.jpg"
 import img2 from "../../../assets/images/works-images/hga.jpg"
 import img3 from "../../../assets/images/works-images/cocacola.jpg"
 import img4 from "../../../assets/images/works-images/coursemigo.jpg"
+import img5 from "../../../assets/images/works-images/A.jpg"
 import HoverEffect from "../../../components/custom/hoverEffect";
 
 const works = [
@@ -14,31 +15,36 @@ const works = [
         client: "Clearwage",
         location: "United Kingdom",
         services: "Website and app design",
-        component: img1
+        component: img1,
+        color: "#0000008f",
     },
     {
         client: "HGA",
         location: "United States",
         services: "Website Design",
         component: img2,
+        color: "#e2e2e2"
     },
     {
         client: "Cocacola",
         location: "Practice",
         services: "Web re-design",
-        component: img3
+        component: img3,
+        color: "red"
     },
     {
         client: "Coursemigo",
         location: "Nigeria",
         services: "App design",
-        component: img4
+        component: img4,
+        color: "#407BFF"
     },
     {
         client: "Abbi's Place",
         location: "Nigeria",
         services: "Website re-design",
-        component: img2
+        component: img5,
+        color: "#FFF"
     },
     {
         client: "MYABFLEX",
@@ -51,25 +57,23 @@ const works = [
 
 const Work = ({ dir, setDir, currentSlide, setCurrentSlide, selected, setSelected, handleSetSelected }) => {
     return (
-        <>
-            <TableBody onMouseLeave={() => {
-                handleSetSelected(null)
-                setDir(null)
-            }} className="relative">
-                {works.map((work) => (
-                    <Table_Row
-                        key={work.client}
-                        dir={dir}
-                        currentSlide={currentSlide}
-                        setCurrentSlide={setCurrentSlide}
-                        selected={selected}
-                        setSelected={setSelected}
-                        handleSetSelected={handleSetSelected}>
-                        {work}
-                    </Table_Row>
-                ))}
-            </TableBody>
-        </>
+        <TableBody onMouseLeave={() => {
+            handleSetSelected(null)
+            setDir(null)
+        }} className="relative">
+            {works.map((work) => (
+                <Table_Row
+                    key={work.client}
+                    dir={dir}
+                    currentSlide={currentSlide}
+                    setCurrentSlide={setCurrentSlide}
+                    selected={selected}
+                    setSelected={setSelected}
+                    handleSetSelected={handleSetSelected}>
+                    {work}
+                </Table_Row>
+            ))}
+        </TableBody>
     )
 }
 
@@ -79,11 +83,16 @@ const Table_Row = ({ children, currentSlide, setCurrentSlide, dir, handleSetSele
         y: useMotionValue(0),
     };
 
-    const handleMouseMove = (e) => {
+    // const handleMouseMove = (e) => {
+    //     const rect = e.currentTarget.getBoundingClientRect();
+    //     mousePosition.x.set(e.clientX - rect.left - 150);
+    //     mousePosition.y.set(e.clientY - rect.top - 100);
+    // };
+    const handleMouseMove = useCallback((e) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        mousePosition.x.set(e.clientX - rect.left - 150);
-        mousePosition.y.set(e.clientY - rect.top - 100);
-    };
+        mousePosition.x.set(e.clientX - rect.left - 180);
+        mousePosition.y.set(e.clientY - rect.top - 150);
+    }, []);
 
     return (
         <>
@@ -94,7 +103,8 @@ const Table_Row = ({ children, currentSlide, setCurrentSlide, dir, handleSetSele
                         handleMouseMove(e);
                     }
                 }
-                onMouseEnter={() => {
+                onMouseEnter={(e) => {
+                    handleMouseMove(e);
                     handleSetSelected(children.id)
                     setSelected(children.id)
                     setCurrentSlide(children.id - 1)
@@ -107,12 +117,14 @@ const Table_Row = ({ children, currentSlide, setCurrentSlide, dir, handleSetSele
 
                 {selected === children.id &&
                     <AnimatePresence>
-                        <Content
-                            dir={dir}
-                            selected={selected}
-                            currentSlide={currentSlide}
-                            setSelected={setSelected}
-                            mousePosition={mousePosition} />
+                        <TableCell className="absolute inset-0">
+                            <Content
+                                dir={dir}
+                                selected={selected}
+                                currentSlide={currentSlide}
+                                setSelected={setSelected}
+                                mousePosition={mousePosition} />
+                        </TableCell>
                     </AnimatePresence>}
             </TableRow>
         </>
@@ -123,70 +135,91 @@ const Table_Row = ({ children, currentSlide, setCurrentSlide, dir, handleSetSele
 
 const Content = ({ selected, dir, mousePosition, currentSlide }) => {
     const contentRef = useRef(null);
-    // const [imageHeight, setImageHeight] = useState(0);
-    // const [totalHeight, setTotalHeight] = useState(0);
+
+    const [imageHeight, setImageHeight] = useState(0);
+    const [totalHeight, setTotalHeight] = useState(0);
+
+    useEffect(() => {
+        if (contentRef.current) {
+            const imgElement = contentRef.current.querySelector("img");
+            if (imgElement) {
+                setImageHeight(imgElement.offsetHeight);
+            }
+            setTotalHeight(contentRef.current.scrollHeight);
+        }
+    }, [contentRef]);
+
+    console.log("current", currentSlide)
+    console.log("selected", selected)
 
 
-    // console.log("DIR", dir)
-    // console.log("currentSlide", currentSlide)
-
-    // useEffect(() => {
-    //     if (contentRef.current) {
-    //         const imgElement = contentRef.current.querySelector("img");
-    //         if (imgElement) {
-    //             setImageHeight(imgElement.offsetHeight);
-    //         }
-    //         setTotalHeight(contentRef.current.scrollHeight);
-    //     }
-    // }, [contentRef]);
-
-
+    const translations = (action, currentSlide)=> {
+        if (dir === null && action === "initial") {
+            return {y : currentSlide * -298}
+        }
+        if (dir === "d") {
+            return { y: currentSlide * -298 };
+        }
+        if (dir === "u") {
+            return { y: currentSlide * -298 };
+        }
+        else {
+            return { y: currentSlide * -298 };
+        }
+    }
 
     return (
-        <motion.div
-            id="overlay-content"
-            style={{
-                position: 'absolute',
-                top: mousePosition.y,
-                left: mousePosition.x,
-                transition: 'all 200ms 10ms cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                pointerEvents: "none",
-                zIndex: 10000,
-            }}
-            className="absolute w-72 h-[200px] overflow-hidden">
-            {/* <AnimatePresence mode="wait"> */}
+        <AnimatePresence>
+            <motion.div
+                ref={contentRef}
+                style={{
+                    position: 'absolute',
+                    top: mousePosition.y,
+                    left: mousePosition.x,
+                    transition: 'all 200ms 10ms cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    pointerEvents: "none",
+                    zIndex: 10000,
+                }}
+                animate={{
+                    scale: 1
+                }}
+                exit={{
+                    scale: 0
+                }}
+                className="absolute inset-0 w-[349px] h-[298px] overflow-hidden">
                 <motion.div
-                    initial={{
-                        translateY: -200 * currentSlide,
-                    }}
-                    animate={{
-                        translateY: -200 * currentSlide
-                    }}
-                    exit={{
-                        translateY: -200 * currentSlide
-                    }}
+                    initial={translations("initial", selected)}
+                    animate={translations("animate", currentSlide)}
                     transition={{
                         type: "spring",
-                        stiffness: 2500,
-                        damping: 30,
-                        delay: 1,
-                        duration: 0.7,
+                        duration: 2
                     }}
-                    className="relative flex flex-col">
-                    {works.map((img, index) => (
+                    className={`relative flex flex-col`}>
+                    { works.map((img, index) => (
                         <motion.img key={index} layout="fill"
+                            style={{
+                                backgroundColor: img.color
+                            }}
                             src={img.component}
-                            // src={works[currentSlide].component}
-                            alt="" className="w-full h-[200px]" />
+                            alt="" className={`relative w-full h-[298px] object-contain p-7`} />
                     ))}
                 </motion.div>
-            {/* </AnimatePresence> */}
-            <HoverEffect Z={70} rotationRange={10} style={{ width: "fit-content" }}>
-                <button className="p-2 w-fit mx-auto z-10 rounded-md bg-darkbg text-white font-bold">View</button>
-            </HoverEffect>
-        </motion.div>
+            
+                <div className="absolute grid place-content-center inset-0">
+                    <HoverEffect Z={80} rotationRange={40} style={{ width: "fit-content" }}>
+                        <button className="w-20 h-20 grid place-content-center cursor-pointer p-4 rounded-full z-10 bg-darkbg text-white font-bold">
+                            <HoverEffect Z={50} rotationRange={20} style={{ width: "fit-content" }}>
+                                <div className="button">view</div>
+                            </HoverEffect>
+                        </button>
+                    </HoverEffect>
+                </div>
+            </motion.div>
+        </AnimatePresence>
     );
 }
+
+
 
 Table_Row.propTypes = {
     currentSlide: PropTypes.any,
@@ -218,4 +251,4 @@ Content.propTypes = {
     mousePosition: PropTypes.any,
 }
 
-export default Work; 500
+export default Work;
